@@ -1,0 +1,60 @@
+{
+  "name": "tchannel-gen",
+  "version": "2.1.0",
+  "description": "Create a new tchannel+hyperbahn application",
+  "keywords": [],
+  "author": "Raynos <raynos2@gmail.com>",
+  "repository": "git://github.com/uber/tchannel-gen.git",
+  "main": "index",
+  "homepage": "https://github.com/uber/tchannel-gen",
+  "bin": "index.js",
+  "bugs": {
+    "url": "https://github.com/uber/tchannel-gen/issues",
+    "email": "raynos2@gmail.com"
+  },
+  "contributors": [
+    {
+      "name": "Raynos"
+    }
+  ],
+  "dependencies": {
+    "camelize": "1.0.0",
+    "minimist": "1.1.1",
+    "process": "0.11.1",
+    "promptly": "0.2.1",
+    "uber-ngen": "5.2.0"
+  },
+  "devDependencies": {
+    "coveralls": "^2.10.0",
+    "istanbul": "^0.3.5",
+    "opn": "^1.0.1",
+    "tap-spec": "^2.1.1",
+    "tape": "^3.4.0",
+    "uber-licence": "1.5.4",
+    "uber-standard": "3.7.1"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "http://github.com/uber/tchannel-gen/raw/master/LICENSE"
+    }
+  ],
+  "scripts": {
+    "test": "npm run lint -s && npm run cover -s",
+    "unit-test": "node test/index.js | tap-spec",
+    "lint": "standard -v",
+    "cover": "istanbul cover --report html --print detail -- test/index.js && npm run check-cover -s",
+    "check-cover": "istanbul check-coverage --branches=100 --lines=100 --functions=100 || echo 'no coverage'",
+    "view-cover": "opn ./coverage/index.html",
+    "check-licence": "uber-licence --dry",
+    "travis": "npm run cover -s && istanbul report lcov && ((cat coverage/lcov.info | coveralls) || exit 0)"
+  },
+  "engine": {
+    "node": ">= 0.8.x"
+  },
+  "pre-commit": [
+    "test"
+  ],
+  "pre-commit.silent": true,
+  "ngen-version": "5.1.0"
+}
